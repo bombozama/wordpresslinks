@@ -32,6 +32,6 @@ add_action( 'plugins_loaded', function() {
 });
 
 // Enable the Link Manager if necessary
-if( ! is_plugin_active( 'link-manager' ) && get_bloginfo( 'version' ) >= 3.5 ) {
+if( get_bloginfo( 'version' ) >= 3.5 ) {
     add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 }
