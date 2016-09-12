@@ -23,6 +23,16 @@
     </div>
 
     <div class="uk-form-row">
+        <label class="uk-form-label" for="wk-operator">{{'Operator' | trans}}</label>
+        <div class="uk-form-controls">
+            <select id="wk-operator" class="uk-form-width-large" ng-model="content.data['operator']">
+                <option value="0">{{'Include items from all selected categories' | trans}}</option>
+                <option value="1">{{'Include items that belong to all selected categories' | trans}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="uk-form-row">
         <label class="uk-form-label" for="wk-include">{{'Custom link list:' | trans}}</label>
         <div class="uk-form-controls">
             <input id="wk-include" class="uk-form-width-large" type="text" placeholder="{{'Comma separated list of bookmark ids' | trans}}" ng-model="content.data['include']">

@@ -22,21 +22,42 @@ return array(
                 'include'  => '',
                 'exclude'  => '',
                 'content'  => 'link_name',
+                'operator' => 0,
             )
     ),
 
     'items' => function( $items, $content, $app ) {
 
         $order = explode( '_asc', $content['order_by'] );
-
         $args  = array(
-            'category'  => $content['category'] ? implode( ',', $content['category'] ) : '',
+            'category'    => $content['category'] ? implode( ',', $content['category'] ) : '',
             'orderby'     => isset( $order[0] ) ? $order[0] : 'name',
             'order'       => isset( $order[1] ) ? 'ASC' : 'DESC',
             'limit'       => $content['number'] ?: -1,
-            'include'     => $content['include'] ?: '',
-            'exclude'     => $content['exclude'] ?: '',
         );
+
+        if ( ! empty( $content['include'] ) ){
+            $args['include'] = $content['include'];
+        }
+
+        if ( ! empty( $content['exclude'] ) ){
+            $args['exclude'] = $content['exclude'];
+        }
+
+        if( intval( $content['operator'] ) ) {
+            # Selected AND operator... make a list of ids and pass it to $args
+            $i = 0;
+            foreach( $content['category'] as $cat ) {
+                $temporaryItems = wp_list_pluck( get_bookmarks( array( 'category' => $cat ) ) , 'link_id' );
+                if( 0 == $i++ ) {
+                    $ids = $temporaryItems;
+                } else {
+                    $ids = array_intersect( $ids, $temporaryItems );
+                }
+            }
+            $args['category'] = '';
+            $args['include'] = implode( ',', $ids );
+        }
 
         foreach ( get_bookmarks( $args ) as $link ) {
             $data = array();
