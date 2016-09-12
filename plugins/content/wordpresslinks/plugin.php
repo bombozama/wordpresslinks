@@ -13,7 +13,7 @@ return array(
     'config' => array(
             'name'  => 'wordpresslinks',
             'label' => 'WordPress Links',
-            'icon'  => 'plugins/content/wordpresslinks/content.svg',
+            'icon'  => plugin_dir_path( __FILE__ ) . 'content.svg',
             'item'  => array('title', 'content', 'link', 'media'),
             'data'  => array(
                 'category' => array(),
