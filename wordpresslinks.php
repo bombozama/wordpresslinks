@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name:       Widgetkit Content Provider: Wordpress Links
+ * Plugin Name:       Widgetkit: WP Bookmarks CP
  * Plugin URI:        https://github.com/bombozama/wordpresslinks
- * Description:       Allows to use the old Wordpress Link Manager as a content provider for Widgetkit.
+ * Description:       Allows to use the old Wordpress Link Manager (bookmarks) as a content provider for Widgetkit.
  * Version:           1.0.0
  * Author:            Gonzalo Henríquez <gonzalo.henriquez@fao.org>
  * Author URI:        http://github.com/bombozama

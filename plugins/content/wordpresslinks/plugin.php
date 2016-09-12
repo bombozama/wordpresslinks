@@ -68,7 +68,7 @@ return array(
     'events' => array(
         'init.admin' => function( $event, $app ) {
             $app['scripts']->add( 'widgetkit-wordpresslinks-controller', 'plugins/content/wordpresslinks/assets/controller.js' );
-            $app['angular']->addTemplate( 'wordpresslinks.edit', 'plugins/content/wordpresslinks/views/edit.php' );
+            $app['angular']->addTemplate( 'wordpresslinks.edit', plugin_dir_path( __FILE__ ) . 'views/edit.php');
         },
 
         'init.site' => function( $event, $app ) {
