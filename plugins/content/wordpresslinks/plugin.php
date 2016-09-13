@@ -51,8 +51,12 @@ return array(
                 $arrays[] = wp_list_pluck( get_bookmarks( array( 'category' => $cat, 'orderby' => 'link_id', 'order'=> 'asc' ) ) , 'link_id' );
             }
             $args['category'] = '';
-            $includes = call_user_func_array( 'array_intersect', $arrays );
-            $args['include'] = ! empty( $includes ) ? implode( ',', $includes ) : '0';
+            $args['include'] = implode( ',', call_user_func_array( 'array_intersect', $arrays ) );
+
+            # Exit. No elements found
+            if( empty( $args['include'] ) ) {
+                return;
+            }
         }
 
         foreach ( get_bookmarks( $args ) as $link ) {

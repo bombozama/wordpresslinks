@@ -5,7 +5,7 @@ return array(
     'main' => 'YOOtheme\\Widgetkit\\Widget\\Widget',
     'config' => array(
         'name'  => 'presentationlist',
-        'label' => 'Presentation List',
+        'label' => 'Simple Text List',
         'core'  => true,
         'icon'  => plugin_dir_path( __FILE__ ) . 'widget.svg',
         'view'  => plugin_dir_path( __FILE__ ) . 'views/widget.php',
