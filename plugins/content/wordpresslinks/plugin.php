@@ -46,17 +46,13 @@ return array(
 
         if( intval( $content['operator'] ) ) {
             # Selected AND operator... make a list of ids and pass it to $args
-            $i = 0;
+            $arrays = [];
             foreach( $content['category'] as $cat ) {
-                $temporaryItems = wp_list_pluck( get_bookmarks( array( 'category' => $cat ) ) , 'link_id' );
-                if( 0 == $i++ ) {
-                    $ids = $temporaryItems;
-                } else {
-                    $ids = array_intersect( $ids, $temporaryItems );
-                }
+                $arrays[] = wp_list_pluck( get_bookmarks( array( 'category' => $cat, 'orderby' => 'link_id', 'order'=> 'asc' ) ) , 'link_id' );
             }
             $args['category'] = '';
-            $args['include'] = implode( ',', $ids );
+            $includes = call_user_func_array( 'array_intersect', $arrays );
+            $args['include'] = ! empty( $includes ) ? implode( ',', $includes ) : '0';
         }
 
         foreach ( get_bookmarks( $args ) as $link ) {

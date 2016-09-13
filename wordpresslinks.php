@@ -26,9 +26,13 @@ add_action( 'plugins_loaded', function() {
 
     $app = Application::getInstance();
 
-    // Register plugin path
+    # Register plugin path for wordpresslinks content provider
     $app['plugins']->addPath( __DIR__ . '/plugins/content/wordpresslinks/plugin.php' );
     $app['locator']->addPath( 'plugins/content/wordpresslinks', __DIR__ . '/plugin' );
+
+    # Register plugin path for presentationlist widget
+    $app['plugins']->addPath( __DIR__ . '/plugins/widgets/presentationlist/plugin.php' );
+    $app['locator']->addPath( 'plugins/widgets/presentationlist', __DIR__ . '/plugin' );
 });
 
 // Enable the Link Manager if necessary
